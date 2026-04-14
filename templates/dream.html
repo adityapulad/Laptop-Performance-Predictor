@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Specs - Hardware Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Dream <span>Specs</span></h1>
+            <p>Build your hypothetical rig and see if it can handle the game.</p>
+            <nav style="margin-top: 1rem;">
+                <a href="/" class="nav-link">Laptop Database</a>
+                <a href="/dream" class="nav-link active">Dream Specs Builder</a>
+            </nav>
+        </header>
+
+        <main class="glass-card">
+            
+            <div class="input-group">
+                <label for="cores">CPU Cores: <span class="val-display" id="val-cores">8</span></label>
+                <input type="range" id="cores" min="2" max="64" value="8" step="2">
+            </div>
+
+            <div class="input-group">
+                <label for="ram">System RAM (GB): <span class="val-display" id="val-ram">16</span></label>
+                <input type="range" id="ram" min="4" max="128" value="16" step="4">
+            </div>
+            
+            <div class="input-group">
+                <label for="vram">GPU VRAM (GB): <span class="val-display" id="val-vram">8</span></label>
+                <input type="range" id="vram" min="2" max="24" value="8" step="2">
+            </div>
+
+            <div class="input-group">
+                <label for="game-input">Target Game</label>
+                <div class="select-wrapper">
+                    <input type="text" id="game-input" list="game-list" placeholder="Search for a game..." class="search-input">
+                    <datalist id="game-list"></datalist>
+                </div>
+            </div>
+
+            <button id="predict-btn" class="glow-btn">
+                <span>Analyze Custom Rig</span>
+            </button>
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Calculating bottlenecks via SHAP...</p>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result-section" class="hidden">
+                <div class="result-badge" id="result-badge">
+                    <h2 id="prediction-text">Optimal</h2>
+                </div>
+                
+                <div id="bottleneck-section" class="bottlenecks hidden">
+                    <h3>Performance Bottlenecks Detected</h3>
+                    <ul id="bottleneck-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/dream.js"></script>
+</body>
+</html>
